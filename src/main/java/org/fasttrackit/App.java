@@ -11,6 +11,8 @@ public class App
         car.doorCount = 4;
         car.mileage = 9.5;
         car.running = true;
+        car.travelDistance = 150;
+        car.fuelLevel= 1000;
 
         Car car2 = new Car();
         car2.name = "Lada";
