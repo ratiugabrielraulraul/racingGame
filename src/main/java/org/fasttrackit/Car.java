@@ -14,6 +14,7 @@ public class Car extends AutoVehicle {
     LocalDate createdDate;
 
 
-
-
+    public Car(Engine engine) {
+        super(engine);
+    }
 }
