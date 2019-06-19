@@ -3,6 +3,9 @@ package org.fasttrackit;
 import java.time.LocalDate;
 
 public class Vehicle {
+    private static int totalCount;
+
+
 
 
 
@@ -15,6 +18,10 @@ public class Vehicle {
     private double fuelLevel;
     private double traveledDistance;
     private LocalDate createdDate;
+
+    public Vehicle() {
+        totalCount++;
+    }
 
 
     public double accelerate(double speed, double durationInHours) {
@@ -97,6 +104,10 @@ public class Vehicle {
 
     public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public static int getTotalCount() {
+        return totalCount;
     }
 
     public LocalDate getCreatedDate() {
