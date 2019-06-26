@@ -61,6 +61,10 @@ public class App
 //        System.out.println("Total count from car2:" + car.totalCount);
 //        System.out.println("Total count from Vehicle class: " + Vehicle.totalCount);
 
+        car2.accelerate(100);
+        new AutoVehicle();
+
+
 
 
 

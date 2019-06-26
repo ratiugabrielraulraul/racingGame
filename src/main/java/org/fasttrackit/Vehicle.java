@@ -44,7 +44,14 @@ public class Vehicle {
         System.out.println("Remaining fuel" + fuelLevel + "1.");
         return distance;
 
+
     }
+
+    public double accelerate(double speed){
+        return accelerate(speed,1);
+
+    }
+
 
     public String getName() {
         return name;
