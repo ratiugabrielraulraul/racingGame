@@ -1,6 +1,7 @@
 package org.fasttrackit;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Vehicle {
     private static int totalCount;
@@ -155,6 +156,26 @@ public class Vehicle {
                 ", traveledDistance=" + traveledDistance +
                 ", createdDate=" + createdDate +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return Double.compare(vehicle.mileage, mileage) == 0 &&
+                Double.compare(vehicle.maxSpeed, maxSpeed) == 0 &&
+                running == vehicle.running &&
+                Double.compare(vehicle.fuelLevel, fuelLevel) == 0 &&
+                Double.compare(vehicle.traveledDistance, traveledDistance) == 0 &&
+                Objects.equals(name, vehicle.name) &&
+                Objects.equals(color, vehicle.color) &&
+                Objects.equals(createdDate, vehicle.createdDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, mileage, color, maxSpeed, running, fuelLevel, traveledDistance, createdDate);
     }
 }
 
