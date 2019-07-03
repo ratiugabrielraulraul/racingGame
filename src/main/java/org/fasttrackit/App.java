@@ -7,17 +7,17 @@ import java.sql.SQLOutput;
 public class App
 {
     public static void main( String[] args ) {
-       // Game game = new Game();
-       // game.start();
+        Game game = new Game();
+        game.start();
 
 
         //String pool
-        String a = "test";
-        String b = "test";
-        String c = new String("test");
-        System.out.println(a == b);
-        System.out.println(a == c);
-        System.out.println(a.equals(c));
+       // String a = "test";
+       // String b = "test";
+       // String c = new String("test");
+       // System.out.println(a == b);
+       // System.out.println(a == c);
+       // System.out.println(a.equals(c));
 
 
 
