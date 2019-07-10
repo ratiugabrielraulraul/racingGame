@@ -2,6 +2,7 @@ package org.fasttrackit;
 
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,7 +14,7 @@ public class Game {
     private List<Vehicle> competitors = new ArrayList<>();
 
 
-    public void start() {
+    public void start() throws Exception {
         initializeTracks();
         displayTracks();
 
@@ -31,10 +32,19 @@ public class Game {
             Scanner scanner = new Scanner(System.in);
             return scanner.nextLine();
         }
-        private int getCompetitorCountFromUser() {
+        private int getCompetitorCountFromUser() throws Exception {
             System.out.println("Please enter vehicle count:");
             Scanner scanner = new Scanner(System.in);
-            return scanner.nextInt();
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                // throw (dam exceptii)
+                throw new Exception("You enter an invalid value.");
+            }finally {
+                //finally block is  always executed
+
+
+            }
         }
     private void addCompetitor() {
         Vehicle vehicle = new Vehicle();
