@@ -1,6 +1,9 @@
 package org.fasttrackit;
 
 
+import com.sun.tools.jdeprscan.scan.Scan;
+
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -18,6 +21,8 @@ public class Game {
         initializeTracks();
         displayTracks();
 
+        Track selectedTrack = getTrackSelectedByUser();
+
         int competitorCount = getCompetitorCountFromUser();
 
         for (int i = 0; i < competitorCount; i++) {
@@ -27,25 +32,43 @@ public class Game {
 
 
     }
-        private String getVehicleNameFromUser() {
-            System.out.println("Please enter vehicle name:");
+
+    private Track getTrackSelectedByUser() {
+        System.out.println("Please enter track number:");
+        try {
             Scanner scanner = new Scanner(System.in);
-            return scanner.nextLine();
+            int trackNumber = scanner.nextInt();
+            Track track = tracks[trackNumber - 1];
+            System.out.println("Selected track: " + track.getName());
+            return track;
+
+        } catch (InputMismatchException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("You entered an invalid track number.Please try again...");
+            return getTrackSelectedByUser();
         }
-        private int getCompetitorCountFromUser() throws Exception {
-            System.out.println("Please enter vehicle count:");
-            Scanner scanner = new Scanner(System.in);
-            try {
-                return scanner.nextInt();
-            } catch (InputMismatchException e) {
-                // throw (dam exceptii)
-                throw new Exception("You enter an invalid value.");
-            }finally {
-                //finally block is  always executed
+    }
+
+    private String getVehicleNameFromUser() {
+        System.out.println("Please enter vehicle name:");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    private int getCompetitorCountFromUser() throws Exception {
+        System.out.println("Please enter vehicle count:");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            // throw (dam exceptii)
+            throw new Exception("You enter an invalid value.");
+        } finally {
+            //finally block is  always executed
 
 
-            }
         }
+    }
+
     private void addCompetitor() {
         Vehicle vehicle = new Vehicle();
         vehicle.setName(getVehicleNameFromUser());
