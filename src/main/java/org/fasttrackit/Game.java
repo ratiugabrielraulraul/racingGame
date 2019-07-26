@@ -1,8 +1,6 @@
 package org.fasttrackit;
 
 
-import com.sun.tools.jdeprscan.scan.Scan;
-
 import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -30,7 +28,40 @@ public class Game {
         }
         displayCompetitors();
 
+        boolean winnerNotKnown = true;
+        int competitorsWithoutFuel = 0;
+        while (winnerNotKnown && competitorsWithoutFuel < competitors.size()) {
 
+
+            //enchanced for / for-each
+            for (Vehicle competitor : competitors) {
+                double speed = getSpeedFromUser();
+                competitor.accelerate(speed);
+
+                if (competitor.getTraveledDistance() >= selectedTrack.getLenght()) {
+                    System.out.println("Congrats! The winner is: " + competitor.getName());
+                    winnerNotKnown = false;
+                    break;
+                }
+                if (competitor.getFuelLevel() <= 0) {
+                    competitorsWithoutFuel++;
+                }
+
+            }
+        }
+
+
+    }
+
+    private double getSpeedFromUser() {
+        System.out.println("Please enter accelaration speed:");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextDouble();
+        } catch (InputMismatchException e) {
+            System.out.println("You have entered an invalid value.");
+            return getSpeedFromUser();
+        }
     }
 
     private Track getTrackSelectedByUser() {
